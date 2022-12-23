@@ -31,4 +31,23 @@ function resetGrid () {
     gridPixels.forEach(gridPixel => gridPixel.style.backgroundColor = 'white');
 }
 
-// select size with select button between 0 and 100
+// select size with select button with input between 0 and 100
+const selectSizeButton = document.querySelector('#grid-size')
+selectSizeButton.addEventListener('click', function () {
+    let gridNumber = getSize();
+    createGrid(gridNumber);
+})
+
+function getSize() {
+    let input = prompt ('Enter board size')
+    let message = document.querySelector('.message');
+
+    if (input == '') {
+        message.textContent = 'Please enter board size';
+    } else if (input < 0 || input > 100) {
+        message.textContent = 'Enter a board size between 0 and 100';
+    } else {
+        message.textContent = 'Board is ready! You can draw!';
+        return input;
+    }
+}
